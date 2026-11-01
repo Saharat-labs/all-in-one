@@ -147,11 +147,17 @@ function card(p){
   </div>`;
 }
 
+// ตัวพิมพ์เล็ก, - _ / = ช่องว่าง, ยุบช่องว่างซ้ำ
+const norm = s => String(s).toLowerCase().replace(/[-_/]/g, ' ').replace(/\s+/g, ' ').trim();
+
 function renderList(){
-  const q = $('#q').value.trim().toLowerCase();
-  const items = PROJECTS.filter(p =>
-    (cat === 'ทั้งหมด' || p.cat === cat) &&
-    (!q || [p.name, p.desc, p.repo, p.cat].join(' ').toLowerCase().includes(q)));
+  const words = norm($('#q').value).split(' ').filter(Boolean);
+  const items = PROJECTS.filter(p => {
+    if (cat !== 'ทั้งหมด' && p.cat !== cat) return false;
+    if (!words.length) return true;
+    const hay = norm([p.name || '', p.desc || '', p.repo || '', p.cat || ''].join(' '));
+    return words.every(w => hay.includes(w));
+  });
   if (!items.length){ $('#list').innerHTML = '<p class="empty">ไม่พบโปรเจกต์</p>'; return; }
   const cats = cat === 'ทั้งหมด' ? CATS : [cat];
   $('#list').innerHTML = cats.map(c => {
