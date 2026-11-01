@@ -2,7 +2,7 @@
 
 รวมผลงานทุกชิ้นของลิกไว้ที่เดียว — หาง่าย ไม่กระจัดกระจาย
 
-**เว็บสารบัญ:** https://saharatyokthuan.github.io/all-in-one/ (ต้องเปิด GitHub Pages ก่อน ดูด้านล่าง)
+**เว็บสารบัญ:** https://saharatyokthuan.github.io/all-in-one/
 
 ## โครงสร้าง
 
@@ -20,16 +20,29 @@
 เปิด `index.html` แล้วเพิ่มหนึ่งบรรทัดใน array `PROJECTS`:
 
 ```js
-{name:'ชื่อโปรเจกต์', repo:'ชื่อรีโพ', site:'ลิงก์เว็บ (ถ้ามี)', cat:'การเงิน', desc:'อธิบายสั้นๆ'},
+{name:'ชื่อโปรเจกต์', repo:'ชื่อรีโพ', web:true, cat:'การเงิน', desc:'อธิบายสั้นๆ'},
+```
+
+| ช่อง | ความหมาย |
+|---|---|
+| `name` | ชื่อที่แสดงบนการ์ด |
+| `repo` | ชื่อรีโพบน GitHub (เว้นว่าง `''` ถ้ายังไม่ได้อัปขึ้น) — จะมีปุ่ม "GitHub" ให้อัตโนมัติ |
+| `web` | ใส่ `web:true` ถ้ารีโพนั้นเปิด GitHub Pages แล้ว — ปุ่ม "เปิดเว็บ" จะลิงก์ไป `https://saharatyokthuan.github.io/<repo>/` ให้เอง (ไม่ต้องพิมพ์ลิงก์) |
+| `site` | ใช้เฉพาะเมื่อเว็บอยู่ที่ลิงก์อื่น (เช่นโดเมนของตัวเอง, Firebase) — ถ้าใส่ จะใช้ลิงก์นี้แทนลิงก์จาก `web` |
+| `cat` | หมวดหมู่ ต้องตรงกับใน `CATS` |
+| `desc` | คำอธิบายสั้นๆ |
+
+ตัวอย่างเว็บที่อยู่ลิงก์อื่น:
+
+```js
+{name:'ชื่อโปรเจกต์', repo:'ชื่อรีโพ', site:'https://example.com/', cat:'อื่นๆ', desc:'อธิบายสั้นๆ'},
 ```
 
 หมวดที่มี: การเงิน, งานร้าน, POS, Vending, เรียนรู้, AI & เครื่องมือ, อื่นๆ
 
-## เปิดเว็บ (GitHub Pages) — ทำครั้งเดียว
+## เว็บ (GitHub Pages)
 
-1. ไปที่รีโพนี้ → **Settings** → **Pages**
-2. Source: **Deploy from a branch** → Branch: **main** / **(root)** → Save
-3. รอ 1–2 นาที แล้วเปิด https://saharatyokthuan.github.io/all-in-one/
+เปิด GitHub Pages ไว้แล้วที่ https://saharatyokthuan.github.io/all-in-one/ — แก้ `index.html` แล้ว commit ขึ้น main เว็บจะอัปเดตเองภายใน 1–2 นาที
 
 ## โปรเจกต์ที่ยังไม่ขึ้น GitHub
 
