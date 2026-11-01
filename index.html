@@ -24,7 +24,7 @@
      background:var(--card);color:var(--text);font:inherit;font-size:1rem}
   #q:focus{outline:2px solid var(--accent);border-color:transparent}
   .chips{display:flex;gap:8px;overflow-x:auto;padding:12px 0;scrollbar-width:none}
-  .chip{flex:none;padding:6px 12px;border-radius:999px;border:1px solid var(--line);
+  .chip{flex:none;display:inline-flex;align-items:center;min-height:44px;padding:6px 14px;border-radius:999px;border:1px solid var(--line);
         background:var(--card);color:var(--muted);font:inherit;font-size:.9rem;cursor:pointer}
   .chip.on{background:var(--accent);color:#04211b;border-color:var(--accent);font-weight:600}
   h2{font-size:1.05rem;margin:18px 0 8px;color:var(--muted);font-weight:600}
@@ -36,8 +36,8 @@
   .tags{display:flex;gap:6px;flex-wrap:wrap}
   .tag{font-size:.75rem;padding:2px 8px;border-radius:6px;background:#1d2534;color:var(--muted)}
   .tag.local{background:#3a2a10;color:var(--warn)}
-  .links{display:flex;gap:8px;margin-top:4px}
-  .links a{font-size:.85rem;text-decoration:none;padding:6px 10px;border-radius:8px;
+  .links{display:flex;gap:10px;margin-top:4px}
+  .links a{display:inline-flex;align-items:center;min-height:44px;font-size:.85rem;text-decoration:none;padding:6px 14px;border-radius:8px;
            border:1px solid var(--line);color:var(--text)}
   .links a.site{border-color:var(--accent);color:var(--accent)}
   .empty{color:var(--muted);text-align:center;padding:30px 0}
