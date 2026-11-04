@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>zetxero — เอเจนซี่การตลาดดิจิทัล</title>
+<meta name="description" content="SEO โฆษณาออนไลน์ เว็บไซต์ และแบรนด์ ครบในทีมเดียว วางกลยุทธ์จากข้อมูล วัดผลได้จริง สำหรับธุรกิจไทย">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700&family=Caveat:wght@700&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* สีหลักจากดีไซน์ zetxero */
+    --surface:#ffffff; --surface-alt:#f4f7ff;
+    --ink:#0c00b3; --ink-deep:#08007d;
+    --text-2:#2d3fbf; --text-3:#3a4fd0; --on-ink:#dfe6ff;
+    --blue:#1f5bff; --sun:#b4ffff; --coral:#ff6b5b; --sky:#93e8ff;
+    --tint:#dfe6ff; --tint-line:#6694f6;
+    --line:#e3e9ff; --line-input:#c9d4ff; --line-ink:#2a2a9e;
+    --radius-sm:8px; --radius-md:16px; --radius-pill:999px;
+    --font-sans:'Prompt','Noto Sans Thai',system-ui,sans-serif;
+    --font-script:'Caveat','Prompt',sans-serif;
+    --font-display:'Bebas Neue','Prompt',sans-serif;
+    color-scheme:light;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  [hidden]{display:none !important}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--font-sans);background:var(--surface);color:var(--ink);line-height:1.5}
+  a{color:var(--blue)}
+  a:hover{color:var(--ink)}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+  .sec{padding:96px 0}
+  .kicker{font-size:14px;font-weight:600;color:var(--blue);letter-spacing:1px}
+  h1,h2,h3{font-weight:700}
+  h2{font-size:clamp(28px,5vw,40px);line-height:1.45}
+  .lead{font-size:17px;line-height:30px}
+  .head{display:flex;flex-direction:column;gap:12px;max-width:720px}
+
+  /* ปุ่ม / ลิงก์ที่หน้าตาเป็นปุ่ม (สูงอย่างน้อย 44px) */
+  .btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:12px 28px;border-radius:var(--radius-pill);
+       font:inherit;font-size:16px;font-weight:600;text-decoration:none;border:2px solid transparent;cursor:pointer;
+       transition:background-color .15s,color .15s,border-color .15s}
+  .btn-blue{background:var(--blue);color:#fff}
+  .btn-blue:hover{background:var(--ink);color:#fff}
+  .btn-sun{background:var(--sun);color:var(--ink)}
+  .btn-sun:hover{background:#fff;color:var(--ink)}
+  .btn-line{border-color:#fff;color:#fff;font-weight:500}
+  .btn-line:hover{background:#fff;color:var(--ink)}
+  .badge{align-self:flex-start;background:var(--sun);color:var(--ink);border-radius:var(--radius-pill);padding:6px 16px;font-size:14px;font-weight:500}
+  a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+  .on-ink a:focus-visible,.on-ink button:focus-visible{outline-color:var(--sun)}
+
+  /* แถบบนสุด */
+  .topbar{background:var(--ink);color:#fff;font-size:13px;line-height:20px}
+  .topbar .wrap{padding-top:10px;padding-bottom:10px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px}
+
+  /* header */
+  .site-header{background:var(--surface);border-bottom:1px solid var(--line)}
+  .site-header .wrap{padding-top:16px;padding-bottom:16px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px}
+  .logo{font-family:var(--font-script);font-size:34px;font-weight:700;color:var(--ink);text-decoration:none;letter-spacing:2px}
+  .nav{display:flex;flex-wrap:wrap;gap:0 8px;font-size:15px;font-weight:500}
+  .nav a{display:inline-flex;align-items:center;min-height:44px;padding:0 8px;color:var(--ink);text-decoration:none}
+  .nav a:hover{text-decoration:underline;text-underline-offset:6px}
+  .site-header .btn{padding:12px 24px;font-size:14px;font-weight:500}
+
+  /* hero */
+  .hero{background:var(--ink);color:#fff}
+  .hero .wrap{padding-top:96px;padding-bottom:88px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:56px;align-items:center}
+  .hero-text{display:flex;flex-direction:column;gap:24px}
+  .hero h1{font-size:clamp(34px,7vw,56px);line-height:1.36}
+  .hero h1 em{font-style:normal;color:var(--sun)}
+  .hero-sub{font-size:18px;line-height:32px;color:var(--on-ink);max-width:560px}
+  .cta-row{display:flex;flex-wrap:wrap;gap:16px}
+  .facts{display:flex;flex-wrap:wrap;gap:8px 32px;padding-top:8px;font-size:14px;color:var(--on-ink)}
+  .facts strong{color:#fff;font-size:20px}
+  .panel{background:var(--blue);border-radius:var(--radius-md);padding:28px;display:flex;flex-direction:column;gap:16px}
+  .panel-head{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:14px;font-weight:500}
+  .pill{background:var(--sun);color:var(--ink);border-radius:var(--radius-pill);padding:4px 12px;font-size:12px;font-weight:500}
+  .tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .tile{background:#fff;color:var(--ink);border-radius:var(--radius-md);padding:20px}
+  .tile b{display:block;font-size:30px;line-height:1.4}
+  .tile span{font-size:13px;color:var(--text-3)}
+  .tile.sun{background:var(--sun)}
+  .tile.sun span{color:var(--ink)}
+  .panel-note{font-size:12px;color:#e6ecff}
+
+  /* แถบเลื่อนบริการ */
+  .marquee{background:var(--sun);overflow:hidden;padding:16px 0}
+  .track{display:flex;gap:48px;width:max-content;font-size:18px;font-weight:600;white-space:nowrap;animation:marquee 30s linear infinite}
+  @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  /* บริการ */
+  .services .wrap{display:flex;flex-direction:column;gap:48px}
+  .head p{color:var(--text-3)}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:24px}
+  .card{background:var(--surface-alt);border-radius:var(--radius-md);padding:28px;display:flex;flex-direction:column;gap:14px;text-decoration:none;color:var(--ink);transition:transform .15s}
+  .card:hover{color:var(--ink);transform:translateY(-3px)}
+  .card-top{display:flex;justify-content:space-between;align-items:center}
+  .icon{width:48px;height:48px;border-radius:var(--radius-pill);background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center}
+  .num{font-size:14px;font-weight:600;color:var(--text-3)}
+  .card h3{font-size:22px;line-height:34px;font-weight:600}
+  .card p{font-size:15px;line-height:26px;color:var(--text-2)}
+  .tags{display:flex;flex-wrap:wrap;gap:8px}
+  .tag{background:#fff;border-radius:var(--radius-pill);padding:4px 12px;font-size:13px}
+
+  /* เกี่ยวกับ */
+  .about{background:var(--surface-alt)}
+  .about .wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:56px;align-items:center}
+  .term{background:var(--ink);color:#fff;border-radius:var(--radius-md);padding:32px;display:flex;flex-direction:column;gap:16px;
+        font-family:ui-monospace,Menlo,monospace;font-size:14px;line-height:26px;overflow-wrap:anywhere}
+  .term .dots{display:flex;gap:8px}
+  .term .dots i{width:12px;height:12px;border-radius:var(--radius-pill)}
+  .term .hl{color:var(--sun)}
+  .about-text{display:flex;flex-direction:column;gap:20px}
+  .about-text .lead{color:var(--text-2)}
+  .reasons{display:flex;flex-direction:column;gap:14px;list-style:none}
+  .reasons li{display:flex;gap:12px;align-items:flex-start;font-size:16px;line-height:28px}
+  .tick{flex:none;width:28px;height:28px;border-radius:var(--radius-pill);background:var(--sun);display:flex;align-items:center;justify-content:center}
+  .about-text .btn{align-self:flex-start;font-weight:500}
+
+  /* ขั้นตอน */
+  .process .wrap{display:flex;flex-direction:column;gap:48px}
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:24px}
+  .step{border-top:3px solid var(--blue);padding-top:20px;display:flex;flex-direction:column;gap:8px}
+  .step .n{font-family:var(--font-display);font-size:44px;line-height:44px;color:var(--blue)}
+  .step h3{font-size:20px;line-height:32px;font-weight:600}
+  .step p{font-size:15px;line-height:26px;color:var(--text-2)}
+
+  /* ผลงาน */
+  .work{background:var(--surface-alt)}
+  .work .wrap{display:flex;flex-direction:column;gap:40px}
+  .work-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px}
+  .work-head .head{gap:12px}
+  .more{display:inline-flex;align-items:center;min-height:44px;font-weight:500}
+  .shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:24px}
+  .shot{display:flex;flex-direction:column;gap:12px}
+  .shot-img{aspect-ratio:4/3;border-radius:var(--radius-md);background:var(--tint);border:2px dashed var(--tint-line);
+            display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--text-2);text-align:center;padding:12px}
+  .shot-info{display:flex;justify-content:space-between;align-items:center;gap:8px}
+  .shot-info b{font-size:18px;font-weight:600}
+  .shot-info .tag{flex:none}
+
+  /* FAQ */
+  .faq .wrap{max-width:880px;display:flex;flex-direction:column;gap:32px}
+  .faq .head{max-width:none;text-align:center}
+  .faq-list{display:flex;flex-direction:column;gap:12px}
+  .faq-item{background:var(--surface-alt);border-radius:var(--radius-md)}
+  .faq-q{width:100%;min-height:56px;background:none;border:0;padding:20px 24px;display:flex;justify-content:space-between;align-items:center;gap:16px;
+         text-align:left;font:inherit;font-size:17px;font-weight:600;color:var(--ink);cursor:pointer;border-radius:var(--radius-md)}
+  .faq-sign{flex:none;width:32px;height:32px;border-radius:var(--radius-pill);background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-size:20px}
+  .faq-a{padding:0 24px 22px;font-size:15px;line-height:27px;color:var(--text-2)}
+
+  /* ติดต่อ */
+  .contact{background:var(--ink);color:#fff}
+  .contact .wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:56px}
+  .contact-text{display:flex;flex-direction:column;gap:20px}
+  .contact h2{font-size:clamp(30px,5.5vw,44px);line-height:1.45}
+  .contact .lead{color:var(--on-ink)}
+  .contact-info{display:flex;flex-direction:column;gap:8px;font-size:16px}
+  .form-box{background:#fff;color:var(--ink);border-radius:var(--radius-md);padding:32px;align-self:start}
+  form{display:flex;flex-direction:column;gap:16px}
+  label{display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:500}
+  input,select,textarea{border:1px solid var(--line-input);border-radius:var(--radius-sm);padding:12px 14px;min-height:44px;font:inherit;font-size:15px;color:var(--ink);background:#fff}
+  input::placeholder,textarea::placeholder{color:var(--text-3);opacity:.8}
+  textarea{resize:vertical}
+  form .btn{min-height:48px;border:0}
+  .thanks{display:flex;flex-direction:column;gap:12px;padding:40px 0;text-align:center}
+  .thanks b{font-size:24px}
+  .thanks span{color:var(--text-2)}
+
+  /* footer */
+  .site-footer{background:var(--ink-deep);color:var(--on-ink)}
+  .site-footer .wrap{padding-top:56px;padding-bottom:32px;display:flex;flex-direction:column;gap:32px}
+  .foot-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:32px}
+  .foot-col{display:flex;flex-direction:column;font-size:14px;gap:2px}
+  .foot-col b{color:#fff;font-weight:600;margin-bottom:8px}
+  .foot-col p{line-height:24px;padding-top:4px}
+  .foot-col a{display:inline-flex;align-items:center;min-height:44px;color:var(--on-ink)}
+  .foot-col a:hover{color:#fff}
+  .foot-col span{line-height:24px;padding:2px 0}
+  .logo-foot{font-family:var(--font-script);font-size:34px;font-weight:700;color:#fff;letter-spacing:2px;margin-bottom:8px}
+  .copy{border-top:1px solid var(--line-ink);padding-top:20px;font-size:13px}
+
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .track{animation:none}
+    .card,.btn{transition:none}
+    .card:hover{transform:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar on-ink">
+  <div class="wrap">
+    <span>เอเจนซี่การตลาดดิจิทัล · [ปีที่ก่อตั้ง]</span>
+    <span>[อีเมล] · โทร [เบอร์โทร]</span>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="#top">zetxero</a>
+    <nav class="nav" aria-label="เมนูหลัก">
+      <a href="#services">บริการ</a>
+      <a href="#about">เกี่ยวกับเรา</a>
+      <a href="#process">วิธีทำงาน</a>
+      <a href="#work">ผลงาน</a>
+      <a href="#faq">คำถามที่พบบ่อย</a>
+    </nav>
+    <a class="btn btn-blue" href="#contact">เริ่มโปรเจกต์ →</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero on-ink" id="top">
+    <div class="wrap">
+      <div class="hero-text">
+        <span class="badge">ให้มืออาชีพดูแลการเติบโตออนไลน์ของคุณ</span>
+        <h1>การตลาดดิจิทัลที่<em>วัดผลได้จริง</em> สำหรับธุรกิจไทย</h1>
+        <p class="hero-sub">SEO โฆษณาออนไลน์ เว็บไซต์ และแบรนด์ ครบในทีมเดียว เราวางกลยุทธ์จากข้อมูล ลงมือทำเอง และรายงานผลแบบเข้าใจง่ายทุกเดือน</p>
+        <div class="cta-row">
+          <a class="btn btn-sun" href="#contact">นัดคุยฟรี 30 นาที →</a>
+          <a class="btn btn-line" href="#services">ดูบริการทั้งหมด</a>
+        </div>
+        <div class="facts">
+          <span><strong>[X]</strong> ปีประสบการณ์</span>
+          <span><strong>[X]+</strong> ลูกค้าที่ดูแล</span>
+          <span><strong>[X.X]★</strong> รีวิว Google</span>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><span>ภาพรวมแคมเปญลูกค้า</span><span class="pill">ตัวอย่าง</span></div>
+        <div class="tiles" id="tiles"></div>
+        <p class="panel-note">ใส่ตัวเลขจริงจากเคสของคุณแทน [X]</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true"><div class="track" id="track"></div></div>
+
+  <section class="sec services" id="services">
+    <div class="wrap">
+      <div class="head">
+        <span class="kicker">บริการของเรา</span>
+        <h2>ทุกช่องทางที่แบรนด์ต้องใช้ เพื่อโตบนโลกออนไลน์</h2>
+        <p class="lead">จ้างที่เดียวจบ ไม่ต้องประสานหลายเจ้า ทุกบริการเชื่อมกันด้วยเป้าหมายเดียวคือยอดขายของคุณ</p>
+      </div>
+      <div class="cards" id="services-list"></div>
+    </div>
+  </section>
+
+  <section class="sec about" id="about">
+    <div class="wrap">
+      <div class="term" aria-hidden="true">
+        <div class="dots"><i style="background:var(--coral)"></i><i style="background:var(--sun)"></i><i style="background:var(--sky)"></i></div>
+        <div>$ zetxero audit --site yourbrand.co.th</div>
+        <div class="hl">// กำลังตรวจเว็บไซต์ทั้งหมด…</div>
+        <div>keywords_tracked: [X]</div>
+        <div>page_speed: [X]/100</div>
+        <div>tech_issues_found: [X]</div>
+        <div>content_gaps: [X]</div>
+        <div class="hl">✓ รายงานกลยุทธ์พร้อมส่ง</div>
+      </div>
+      <div class="about-text">
+        <span class="kicker">ทำไมต้อง zetxero</span>
+        <h2>ตรงไปตรงมา ใช้ข้อมูลนำทาง และเอาผลลัพธ์เป็นที่ตั้ง</h2>
+        <p class="lead">เราไม่ขายแพ็กเกจสำเร็จรูป ทุกแผนเริ่มจากการเข้าใจธุรกิจคุณ แล้วเลือกช่องทางที่คุ้มงบที่สุด</p>
+        <ul class="reasons" id="reasons"></ul>
+        <a class="btn btn-blue" href="#contact">ร่วมงานกับเรา →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec process" id="process">
+    <div class="wrap">
+      <div class="head">
+        <span class="kicker">วิธีทำงาน</span>
+        <h2>6 ขั้นตอน เรียบง่ายและโปร่งใส</h2>
+      </div>
+      <div class="steps" id="steps"></div>
+    </div>
+  </section>
+
+  <section class="sec work" id="work">
+    <div class="wrap">
+      <div class="work-head">
+        <div class="head">
+          <span class="kicker">ผลงาน</span>
+          <h2>เว็บไซต์ที่เราออกแบบ</h2>
+        </div>
+        <a class="more" href="#contact">ดูผลงานทั้งหมด →</a>
+      </div>
+      <div class="shots" id="shots"></div>
+    </div>
+  </section>
+
+  <section class="sec faq" id="faq">
+    <div class="wrap">
+      <div class="head">
+        <span class="kicker">FAQ</span>
+        <h2>คำถามที่พบบ่อย</h2>
+      </div>
+      <div class="faq-list" id="faqs"></div>
+    </div>
+  </section>
+
+  <section class="sec contact on-ink" id="contact">
+    <div class="wrap">
+      <div class="contact-text">
+        <span class="badge">มาคุยกัน</span>
+        <h2>เบื่อโฆษณาที่จ่ายแล้วเงียบ? ให้เราช่วยทำให้มันเห็นผล</h2>
+        <p class="lead">จองเวลาคุยกลยุทธ์ฟรี 30 นาที ไม่มีข้อผูกมัด</p>
+        <div class="contact-info">
+          <span>โทร [เบอร์โทร]</span>
+          <span>[อีเมล]</span>
+          <span>[ที่อยู่] · จันทร์–ศุกร์ [เวลาทำการ]</span>
+        </div>
+      </div>
+      <div class="form-box">
+        <form id="form">
+          <label>ชื่อ<input type="text" name="name" placeholder="ชื่อของคุณ" autocomplete="name" required></label>
+          <label>อีเมลหรือเบอร์โทร<input type="text" name="contact" placeholder="ช่องทางติดต่อกลับ" autocomplete="email" required></label>
+          <label>สนใจบริการ
+            <select name="service">
+              <option>SEO</option>
+              <option>โฆษณา Google / Meta</option>
+              <option>ออกแบบเว็บไซต์</option>
+              <option>แบรนด์และกราฟิก</option>
+              <option>ยังไม่แน่ใจ ขอคำแนะนำ</option>
+            </select>
+          </label>
+          <label>เล่าเกี่ยวกับธุรกิจคุณ<textarea name="message" rows="4" placeholder="เป้าหมาย งบประมาณคร่าวๆ"></textarea></label>
+          <button class="btn btn-blue" type="submit">ส่งข้อความ →</button>
+        </form>
+        <div class="thanks" id="thanks" role="status" hidden>
+          <b>ได้รับข้อความแล้ว!</b>
+          <span>ทีมงานจะติดต่อกลับภายใน 1 วันทำการ</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-cols">
+      <div class="foot-col">
+        <span class="logo-foot">zetxero</span>
+        <p>เอเจนซี่การตลาดดิจิทัล ช่วยธุรกิจไทยเติบโตบนโลกออนไลน์</p>
+      </div>
+      <div class="foot-col">
+        <b>บริการ</b>
+        <a href="#services">SEO</a><a href="#services">โฆษณาออนไลน์</a><a href="#services">ออกแบบเว็บไซต์</a><a href="#services">แบรนด์และกราฟิก</a>
+      </div>
+      <div class="foot-col">
+        <b>บริษัท</b>
+        <a href="#about">เกี่ยวกับเรา</a><a href="#work">ผลงาน</a><a href="#faq">คำถามที่พบบ่อย</a><a href="#contact">ติดต่อเรา</a>
+      </div>
+      <div class="foot-col">
+        <b>ติดต่อ</b>
+        <span>[เบอร์โทร]</span><span>[อีเมล]</span><span>[Facebook] · [TikTok] · [Instagram]</span>
+      </div>
+    </div>
+    <div class="copy">© 2026 zetxero. สงวนลิขสิทธิ์</div>
+  </div>
+</footer>
+
+<script>
+// ====== เนื้อหา (แก้ตรงนี้ที่เดียว — [X] และ [ ... ] คือที่ว่างให้ใส่ข้อมูลจริง) ======
+const STATS = [
+  {v:'+[X]%', t:'ทราฟฟิกออร์แกนิก'},
+  {v:'+[X]%', t:'คีย์เวิร์ดหน้าแรก'},
+  {v:'+[X]%', t:'อัตราคอนเวอร์ชัน'},
+  {v:'[X]x',  t:'ROAS โฆษณา', sun:true},
+];
+
+const MARQUEE = ['SEO','Google Ads','Facebook & Instagram Ads','ออกแบบเว็บไซต์','สร้างแบรนด์','คอนเทนต์','Google Business Profile'];
+
+const SERVICES = [
+  {title:'SEO และ Google Business', desc:'ติดอันดับให้สูงและอยู่ได้นาน ด้วย SEO ที่ใช้ข้อมูลนำทาง', tags:['Technical SEO','คีย์เวิร์ด','On-Page']},
+  {title:'โฆษณา Google และ Meta', desc:'แคมเปญที่ตั้งเป้าที่ยอดขาย ดูแลงบเหมือนเงินของเราเอง', tags:['Google Ads','FB / IG Ads','Retargeting']},
+  {title:'ออกแบบเว็บไซต์', desc:'เว็บที่โหลดเร็ว ติดอันดับดี และเปลี่ยนคนดูเป็นลูกค้า', tags:['เว็บองค์กร','E-commerce','Hosting']},
+  {title:'แบรนด์และกราฟิก', desc:'อัตลักษณ์ที่โดดเด่นและจดจำได้ในทุกจุดที่ลูกค้าเห็น', tags:['โลโก้','Brand Guide','กราฟิก']},
+  {title:'คอนเทนต์', desc:'เขียนให้คนอ่าน และให้ Google เข้าใจ ทั้งบทความและหน้าขาย', tags:['บทความ','Landing Page','แผนคอนเทนต์']},
+  {title:'เพิ่มคอนเวอร์ชัน (CRO)', desc:'ปรับทุกจุดบนเว็บให้คนกดติดต่อและซื้อมากขึ้น', tags:['CTA','UX','A/B Test']},
+];
+
+const REASONS = [
+  'กลยุทธ์ออกแบบเฉพาะธุรกิจคุณ ไม่ใช่แพ็กเกจเหมือนกันทุกเจ้า',
+  'รายงานสั้น ชัด และวัดผลได้จริง',
+  'ราคาจับต้องได้ ทำโดยทีมจริง',
+  'ตอบไว ติดต่อง่าย มีผู้ดูแลประจำ',
+];
+
+const STEPS = [
+  {title:'ทำความเข้าใจ', desc:'คุยเป้าหมาย ลูกค้า และคู่แข่งของคุณ'},
+  {title:'วางกลยุทธ์', desc:'แผนงานตามเป้าและงบประมาณ'},
+  {title:'ลงมือทำ', desc:'ทีมเริ่มงานตรงเวลา ตามขอบเขตที่ตกลง'},
+  {title:'ปรับให้ดีขึ้น', desc:'ใช้ข้อมูลจริงปรับแคมเปญต่อเนื่อง'},
+  {title:'รายงานผล', desc:'สรุปรายเดือน ภาษาเข้าใจง่าย'},
+  {title:'ขยายผล', desc:'ต่อยอดสิ่งที่ได้ผลไปช่องทางใหม่'},
+];
+
+const WORK = [
+  {name:'[ชื่อลูกค้า 1]', tag:'เว็บองค์กร'},
+  {name:'[ชื่อลูกค้า 2]', tag:'E-commerce'},
+  {name:'[ชื่อลูกค้า 3]', tag:'Landing Page'},
+];
+
+const FAQS = [
+  {q:'zetxero มีบริการอะไรบ้าง?', a:'SEO, โฆษณา Google และ Meta, Google Business Profile, ออกแบบเว็บไซต์, สร้างแบรนด์และกราฟิก, คอนเทนต์ และปรับหน้าเว็บให้ขายได้มากขึ้น'},
+  {q:'SEO ใช้เวลานานแค่ไหนถึงเห็นผล?', a:'โดยทั่วไปเริ่มเห็นการเปลี่ยนแปลงใน 3–6 เดือน ขึ้นกับการแข่งขันในอุตสาหกรรมและสภาพเว็บเดิม เราเริ่มจากงานเทคนิคที่เห็นผลเร็วก่อน'},
+  {q:'มีเว็บไซต์อยู่แล้ว ยังต้องทำการตลาดอีกไหม?', a:'ควรทำ เว็บที่ไม่มีคนเห็นก็เหมือนร้านที่ไม่มีป้าย การตลาดดิจิทัลช่วยพาลูกค้าที่กำลังค้นหาอยู่มาเจอคุณ'},
+  {q:'ค่าบริการเท่าไหร่?', a:'ขึ้นกับเป้าหมายและงบของแต่ละธุรกิจ เราจะเสนอแผนที่คุ้มที่สุดพร้อมบอกชัดว่ารวมอะไรบ้าง [ใส่ราคาเริ่มต้นถ้ามี]'},
+  {q:'จะได้รับรายงานผลไหม?', a:'ได้ทุกเดือน รายงานเข้าใจง่าย ไม่ใช้ศัพท์เทคนิค แสดงอันดับ ทราฟฟิก ลีด และค่าใช้จ่าย พร้อมผู้ดูแลที่ติดต่อได้ตลอด'},
+];
+
+// ====== แสดงผล ======
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const pad = i => String(i + 1).padStart(2, '0');
+
+const ARROW = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>';
+const TICK = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0c00b3" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg>';
+
+$('#tiles').innerHTML = STATS.map(s =>
+  `<div class="tile${s.sun ? ' sun' : ''}"><b>${esc(s.v)}</b><span>${esc(s.t)}</span></div>`).join('');
+
+// เนื้อหา marquee ซ้ำ 2 ชุด เพื่อให้ translateX(-50%) วนต่อเนื่อง
+const lap = MARQUEE.map(t => `<span>${esc(t)}</span><span>✦</span>`).join('');
+$('#track').innerHTML = lap + lap;
+
+$('#services-list').innerHTML = SERVICES.map((s, i) =>
+  `<a class="card" href="#contact">
+    <div class="card-top"><span class="icon">${ARROW}</span><span class="num">${pad(i)}</span></div>
+    <h3>${esc(s.title)}</h3>
+    <p>${esc(s.desc)}</p>
+    <div class="tags">${s.tags.map(t => `<span class="tag">${esc(t)}</span>`).join('')}</div>
+  </a>`).join('');
+
+$('#reasons').innerHTML = REASONS.map(r =>
+  `<li><span class="tick">${TICK}</span><span>${esc(r)}</span></li>`).join('');
+
+$('#steps').innerHTML = STEPS.map((s, i) =>
+  `<div class="step"><span class="n">${pad(i)}</span><h3>${esc(s.title)}</h3><p>${esc(s.desc)}</p></div>`).join('');
+
+$('#shots').innerHTML = WORK.map(w =>
+  `<div class="shot">
+    <div class="shot-img">[ภาพหน้าจอเว็บไซต์ลูกค้า]</div>
+    <div class="shot-info"><b>${esc(w.name)}</b><span class="tag">${esc(w.tag)}</span></div>
+  </div>`).join('');
+
+// FAQ — เปิดได้ทีละข้อ ข้อแรกเปิดไว้ก่อน
+let openFaq = 0;
+function renderFaqs(){
+  $('#faqs').innerHTML = FAQS.map((f, i) => {
+    const open = openFaq === i;
+    return `<div class="faq-item">
+      <button type="button" class="faq-q" id="faq-q${i}" data-i="${i}" aria-expanded="${open}" aria-controls="faq-a${i}">
+        <span>${esc(f.q)}</span><span class="faq-sign" aria-hidden="true">${open ? '−' : '+'}</span>
+      </button>
+      <p class="faq-a" id="faq-a${i}" role="region" aria-labelledby="faq-q${i}"${open ? '' : ' hidden'}>${esc(f.a)}</p>
+    </div>`;
+  }).join('');
+}
+$('#faqs').addEventListener('click', e => {
+  const b = e.target.closest('.faq-q'); if (!b) return;
+  const i = +b.dataset.i;
+  openFaq = openFaq === i ? -1 : i;
+  renderFaqs();
+  $('#faq-q' + i).focus();
+});
+renderFaqs();
+
+// ฟอร์มติดต่อ — ตอนนี้ยังเป็นหน้าตัวอย่าง ไม่ได้ส่งข้อมูลไปที่ไหน
+// TODO: ต่อกับบริการรับฟอร์มจริง (เช่น Formspree / Google Forms / LINE) ก่อนเปิดใช้งาน
+$('#form').addEventListener('submit', e => {
+  e.preventDefault();
+  $('#form').hidden = true;
+  $('#thanks').hidden = false;
+});
+</script>
+</body>
+</html>
